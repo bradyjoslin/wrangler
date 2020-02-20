@@ -128,6 +128,33 @@ $ wrangler publish
 
   Interact with your Workers KV store. This is actually a whole suite of subcommands. Read more about in [Wrangler KV Documentation](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands).
 
+### 👂 `dev`
+
+  ```bash
+  $ wrangler dev --help
+  👂  Start a local server for developing your worker
+
+  USAGE:
+      wrangler dev [OPTIONS]
+
+  FLAGS:
+          --help    Prints help information
+
+  OPTIONS:
+      -e, --env <env>      environment to build
+      -h, --host <host>    domain to test behind your worker. defaults to example.com
+      -i, --ip <ip>        ip to listsen on. defaults to localhost
+      -p, --port <port>    port to listen on. defaults to 8787
+  ```
+
+  `wrangler dev` works very similarly to `wrangler preview` except that instead of opening your browser to preview your worker, it will start a server on localhost that will execute your worker on incoming HTTP requests. From there you can use cURL, Postman, your browser, or any other HTTP client to test the behavior of your worker before publishing it.
+
+  You should run wrangler dev from your worker directory, and if your worker makes any requests to a backend, you should specify the host with `--host example.com`.
+
+  From here you should be able to send HTTP requests to `localhost:8787` along with any headers and paths, and your worker should execute as expected. Additionally, you should see console.log messages and exceptions appearing in your terminal.
+
+  You should be able to use cURL, Postman, and any other HTTP client you'd like with this.
+
 ## Additional Documentation
 
 All information regarding wrangler or Cloudflare Workers is located in the [Cloudflare Workers Developer Docs](https://developers.cloudflare.com/workers/). This includes:
